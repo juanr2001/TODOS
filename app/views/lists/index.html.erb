@@ -1,6 +1,17 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
-<%= form_for @list, :url => lists_path, :html => { :multipart => true } do |form| %>
+<ul class="list-unstyled">
+          <% if current_user %>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete,
+                            class: 'btn btn-warning' %></li>
+          <% else %>
+             <li><%= link_to "Login", new_user_session_path, class: 'btn btn-success' %>
+          <% end %>
+</u>
 
-  <%= form.file_field :image %>
-<% end %>
+
+<div class = "lists">
+    <%@lists.each do |list|%>
+      <%= render partial: "list", locals: {list: list}%>
+    <%end%>
+</div>
+
+

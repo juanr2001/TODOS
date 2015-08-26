@@ -1,0 +1,24 @@
+<%= form_for @list do | list | %>
+
+    <div class = "form">
+        <div class = "form-title">
+            <%= list.label :title%>
+            <%= list.text_field :title%>
+        </div>
+
+        <div class = "form-content">
+            <%= list.label  :content %>
+            <%= list.text_area :content, rows: 10, cols: 20  %>
+        </div>
+
+        <div class = "form-duday">
+            <%= list.label :due_day %>
+            <%= list.text_field :due_day, size: 10 %>
+        </div>
+
+        <div class = "form-save"> <%= submit_tag 'Save', class: 'btn btn-default' %> </div>
+    </div>
+
+
+<%end%>
+

@@ -1,0 +1,8 @@
+<div class = "list">
+
+    <div class = "link-list"><h3><%= link_to_unless_current list.title, lists_path(list) %></h3></div>
+    <div class = "due-day-list"><h3>Due Date: <%= list.due_day %></h3>
+
+    <%= simple_format(list.content)%>
+</div>
+
