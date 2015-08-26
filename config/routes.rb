@@ -2,15 +2,15 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  root to: "home#index"
+  root to: "lists#index"
+  get "/lists/:id/finished_yes_no", to: "lists#finished_yes_no", as: "finished_yes_no"
   #lists routes
-  get '/lists', to: 'lists#index'
-  get '/lists/:id', to: 'lists#show'
-  get '/lists/new', to: 'lists#new'
-  post '/lists', to: 'lists#create'
-  get '/lists/:id/edit', to: 'lists#edit', as: 'list_edit'
-  patch 'lists/:id', to: 'lists#update'
-  delete 'lists/:id',to: 'photos#delete'
+  get 'lists/new', to: 'lists#new'
+  get 'list/:id', to: 'lists#show'
+  post 'lists', to: 'lists#create'
+  get 'list/:id/edit', to: 'lists#edit', as: 'edit_list'
+  patch 'list/:id', to: 'lists#update'
+  delete 'list/:id',to: 'lists#delete'
 
 
 

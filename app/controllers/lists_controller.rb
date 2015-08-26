@@ -1,51 +1,62 @@
 class ListsController < ApplicationController
-  def index #this is GET request, it will show all the posts
-    @list = List.all
-    render :index
+
+  before_action :authenticate_user!, only: [:create, :update, :delete]
+  before_action :strong_params_lists, only: [:create, :update]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :todos_featured, :finished_yes_no]
+
+  def all_user_todos
+
   end
 
-  def show #this is a GET Request, it will show and individual post
-    @list = List.find(params [:id])
-    render :show
+  def index
+    @lists = List.all
   end
 
-  def new#this is GET Request, it will display the form to summit a new post
+  def new
     @list = List.new
-    @action = lists_path
-    @http_method = :post
+  end
+
+  def show
+  end
+
+  def create
+    @list = List.new. strong_params_lists
+    if @list.save
+      redirect_to @list, notice: "Successfully created!"
+    end
     render :new
   end
 
-  def create#this is POST request. It does not have a view, it just saves the post  in the data base, and it will rederect to a different page
-    @list = List.create(title: params[:tittle],
-                                  content: params[:content],
-                                  due_day: params[:due_day],
-                                  finished: params[:finished])
-  rederect_to list_path
-
+  def edit
   end
 
-  def edit #this is a GET request, it will display a form for editing a post
-    @list = List.find(params[:id])
-    @action = lists_path(@list)
-    @http_method = :post
-
-    render :edit
+  def update
+    if @list.update
+      redirect_to root_path, notice: "Successfully Created!"
+    end
+    # render :show
   end
 
-  def update#this is PATCH request. It will update the post of the database. It does not have a view file, and rederect to a different page
-    @list = List.find(params[:id])
-    @list.update(title: params[:title],
-                          content: params[:content],
-                          due_day: params[:due_day],
-                          finished: params[:finished])
-    rederect_to list_path(@list)
-  end
-
-  def delete #this is DELETE request. It does not have a view file, it rederects to a different page.
-    @list = List.find(params[:id])
+  def destroy
     @list.destroy
-  rederect_to lists_path
   end
 
+  def finished_yes_no
+    @list.toggle!(:finished)
+    flash[:notice] = "You are #{@list.finished}"
+    redirect_to @list
+  end
+
+
+
+  private
+
+
+  def strong_params_lists
+    params.require(:list).permit(:title,:content,:due_day, :finished)
+  end
+
+  def set_list
+    @list = List.find(params[:id])
+  end
 end

@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+
+gem 'aws-sdk', '~> 2.1.4'
+#gem 'aws-s3', '~> 0.6.3'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -30,6 +33,7 @@ gem 'materialize-sass'
 # gem 'bcrypt', '~> 3.1.7'
 #to uplaod pictures
 gem "paperclip", "~> 4.3"
+gem 'mandrill-api', '~> 1.0.51', require: 'mandrill'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

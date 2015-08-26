@@ -8,7 +8,30 @@
 </head>
 <body>
 
+<nav>
+    <div class="nav-wrapper">
+      <a href = "#" class = "brand-logo" > =) DeLibro </a>
+        <ul id = "nav-mobile" class = "right hide-on-med-and-down" >
+            <li> My-TODOS </a></li>
+            <li> Sign-out </a></li>
+        </ul>
+    </div>
+</nav>
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<%end%>
+
+
 <%= yield %>
+
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+            © 2015 Copyright Company
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

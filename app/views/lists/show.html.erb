@@ -1,2 +1,13 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<%= render partial: "list", object: @list %>
+
+<div class = "list-nav">
+
+    <%if @list.user == current_user %>
+
+    <%= link_to "Edit List", edit_list_path(@list), class: 'btn btn-info' %>
+    <%= link_to "Delete List", lists_path(@list), class: 'btn btn-danger',
+            method: :delete,
+            data: {confirm: "Are you sure"} %>
+    <%end%>
+    <%= link_to "Are you finished?", finished_yes_no_path(@list) %>
+</div>
